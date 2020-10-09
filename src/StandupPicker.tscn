@@ -1,0 +1,146 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/StandupPicker.gd" type="Script" id=1]
+[ext_resource path="res://src/Entry.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/AddEntry.tscn" type="PackedScene" id=3]
+
+[node name="StandupPicker" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Entry = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 593.0
+margin_bottom = 793.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 42.0
+margin_top = 17.0
+margin_right = 542.0
+margin_bottom = 767.0
+rect_min_size = Vector2( 500, 750 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = -1.0
+margin_right = 500.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 0, 50 )
+text = "STANDUP PICKER 2.0"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 500.0
+margin_bottom = 672.0
+size_flags_vertical = 3
+
+[node name="Active" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 221.0
+margin_bottom = 618.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/Active"]
+margin_right = 221.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+text = "PRESENT"
+align = 1
+valign = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/Active"]
+margin_top = 44.0
+margin_right = 221.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Container" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/Active"]
+margin_top = 68.0
+margin_right = 221.0
+margin_bottom = 550.0
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/Active"]
+margin_top = 554.0
+margin_right = 221.0
+margin_bottom = 574.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="WinnerLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/Active"]
+margin_top = 578.0
+margin_right = 221.0
+margin_bottom = 618.0
+rect_min_size = Vector2( 40, 40 )
+align = 1
+valign = 1
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 225.0
+margin_right = 275.0
+margin_bottom = 618.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="Inactive" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 279.0
+margin_right = 500.0
+margin_bottom = 618.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/Inactive"]
+margin_right = 221.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+text = "POOL"
+align = 1
+valign = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/Inactive"]
+margin_top = 44.0
+margin_right = 221.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Container" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/Inactive"]
+margin_top = 68.0
+margin_right = 221.0
+margin_bottom = 555.0
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/Inactive"]
+margin_top = 559.0
+margin_right = 221.0
+margin_bottom = 579.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="AddEntry" parent="CenterContainer/VBoxContainer/HBoxContainer/Inactive" instance=ExtResource( 3 )]
+margin_top = 583.0
+margin_right = 221.0
+margin_bottom = 618.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+margin_top = 676.0
+margin_right = 500.0
+margin_bottom = 696.0
+rect_min_size = Vector2( 0, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LetsRoll" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 700.0
+margin_right = 500.0
+margin_bottom = 750.0
+rect_min_size = Vector2( 0, 50 )
+text = "LET'S ROLL!"
+[connection signal="tree_exiting" from="." to="." method="_on_StandupPicker_tree_exiting"]
+[connection signal="entry_added" from="CenterContainer/VBoxContainer/HBoxContainer/Inactive/AddEntry" to="." method="_on_AddEntry_entry_added"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LetsRoll" to="." method="_on_LetsRoll_pressed"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/AddEntry.gd" type="Script" id=1]
+
+[node name="AddEntry" type="HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 35 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_right = 161.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+align = 1
+placeholder_text = "Name"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 165.0
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "+"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
